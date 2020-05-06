@@ -12,6 +12,8 @@ window["h"] = h
 
 import './style.less'
 
+let qq: number = 'not a number'
+
 interface State {
   count: number
 }

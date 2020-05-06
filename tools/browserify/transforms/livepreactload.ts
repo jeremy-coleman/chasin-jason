@@ -1,4 +1,3 @@
-//import clc from "cli-color"
 import { readFileSync } from 'fs'
 import https from 'https'
 import _ from "lodash"
@@ -105,15 +104,11 @@ function LiveReactloadPlugin(b, opts: any = {}) {
   // } catch (e) {}
 
   const clientOpts = {
-    // assuming that livereload package is in global mdule directory (node_modules)
-    // and this file is in ./lib/babel-plugin folder
-    //nodeModulesRoot: resolve(__dirname, "../../.."),
     nodeModulesRoot: resolve(process.cwd(), "node_modules"),
     port: Number(port),
     host: host,
     clientEnabled: client,
     debug: debug,
-    //babel: babel,
     clientRequires: clientRequires
   }
 

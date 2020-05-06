@@ -1,23 +1,23 @@
-
 var stream = require("stream");
-let sucrase = require("sucrase")
+let sucrase = require("sucrase");
 
 module.exports = buildTransform();
 module.exports.configure = buildTransform;
 
-
-
-/** @type import('sucrase').Options */
-var sucraseConfig = file => ({
-  transforms: ["typescript", "imports", "jsx"],
-  filePath: file,
-  //enableLegacyTypeScriptModuleInterop: true
-  enableLegacyBabel5ModuleInterop: true
-})
+var sucraseConfig = (file) => {
+  /** @type import('sucrase').Options */
+  const config = {
+    transforms: ["typescript", "imports", "jsx"],
+    filePath: file,
+    //enableLegacyTypeScriptModuleInterop: true
+    enableLegacyBabel5ModuleInterop: true,
+  };
+  return config;
+};
 
 function buildTransform() {
   return function (filename) {
-    const babelOpts = sucraseConfig(filename)
+    const babelOpts = sucraseConfig(filename);
     if (babelOpts === null) {
       return stream.PassThrough();
     }
@@ -41,60 +41,34 @@ class SucraseStream extends stream.Transform {
     // Merge the buffer pieces after all are available
     const data = Buffer.concat(this._data).toString();
 
-    try{
-      let result = sucrase.transform(data, this._opts)
+    try {
+      let result = sucrase.transform(data, this._opts);
       var code = result !== null ? result.code : data;
       this.push(code);
       callback();
-    }
-    catch(e){
-      callback(e)
+    } catch (e) {
+      callback(e);
     }
   }
 }
 
+/** ```typescript
+type SucraseOptions = {
+transforms: "jsx" | "typescript" | "flow" | "imports" | "react-hot-loader";
+jsxPragma?: string;
+jsxFragmentPragma?: string | 'React.Fragment'
+//If true, replicate the import behavior of TypeScript's esModuleInterop: false
+enableLegacyTypeScriptModuleInterop?: boolean; 
+//If true, replicate the import behavior Babel 5 and babel-plugin-add-module-exports.
+enableLegacyBabel5ModuleInterop?: boolean;
+sourceMapOptions?: {
+  //name of "file" field of the source map, aka the name of the compiled file.
+  compiledFilename: string;
+};
+//File path to use in error messages, React display names, and source maps.
+filePath?: string;
+//omit any development-specific code in the output. aka envify
+production?: boolean
 
-
-
-
-// transforms: Array<Transform>;
-// /**
-//  * If specified, function name to use in place of React.createClass when compiling JSX.
-//  */
-// jsxPragma?: string;
-// /**
-//  * If specified, function name to use in place of React.Fragment when compiling JSX.
-//  */
-// jsxFragmentPragma?: string;
-// /**
-//  * If true, replicate the import behavior of TypeScript's esModuleInterop: false.
-//  */
-// enableLegacyTypeScriptModuleInterop?: boolean;
-// /**
-//  * If true, replicate the import behavior Babel 5 and babel-plugin-add-module-exports.
-//  */
-// enableLegacyBabel5ModuleInterop?: boolean;
-// /**
-//  * If specified, we also return a RawSourceMap object alongside the code. Currently, source maps
-//  * simply map each line to the original line without any mappings within lines, since Sucrase
-//  * preserves line numbers. filePath must be specified if this option is enabled.
-//  */
-// sourceMapOptions?: SourceMapOptions;
-// /**
-//  * File path to use in error messages, React display names, and source maps.
-//  */
-// filePath?: string;
-// /**
-//  * If specified, omit any development-specific code in the output.
-//  */
-// production?: boolean
-
-// function buildTransform(opts) {
-//   return function (filename, transformOpts) {
-//     const babelOpts = normalizeOptions(opts, transformOpts, filename);
-//     if (babelOpts === null) {
-//       return stream.PassThrough();
-//     }
-//     return new SucraseStream(babelOpts);
-//   };
-// }
+}```
+*/

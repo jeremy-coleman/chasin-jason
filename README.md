@@ -18,3 +18,5 @@ react prod 413kb with hot loader
 234 react prod
 90 preact prod
 
+#37 modules , THEY ALL FIT ON YOUR SCREEN IN VSCODE, REJOICE BOYS AND GIRLS
+<img src=beatiful-modules.jpg></img>

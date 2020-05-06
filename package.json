@@ -7,7 +7,7 @@
   "license": "ICS",
   "scripts": {
     "start": "sucrase-node start",
-    "start-preact":"sucrase-node start-preact"
+    "explain":"node explain.js"
   },
   "dependencies": {
     "lodash": "4.17.15",

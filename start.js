@@ -6,5 +6,3 @@ require('./start-preact')
 
 //adds fast typescript checks to stdout with clickable link directly to line number, disable for preact/react +mobx conflicts
 require('./ts-check')
-
-console.log("src/main.tsx(17,17)")

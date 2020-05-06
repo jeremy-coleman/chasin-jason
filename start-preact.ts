@@ -2,7 +2,7 @@
 import fs from 'fs'
 import path from 'path'
 import _ from 'lodash'
-import jetpack from './tools/sdk/fs-jetpack';
+import jetpack from 'fs-jetpack';
 
 
 

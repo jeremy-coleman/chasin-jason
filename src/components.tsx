@@ -61,7 +61,7 @@ export const BottomToolbar = (props) => {
   return (
     <div className="toolbar toolbar-bottom">
       <button id={CLEAR_BUTTON_ID} className="toolbar-button">
-        <i className="fa fa-remove"></i>&nbsp;&nbsp;Clearz
+        <i className="fa fa-remove"></i>&nbsp;&nbsp;Clear
       </button>
       <button id={NEW_BUTTON_ID} className="toolbar-button">
         <i className="fa fa-plus-circle"></i>&nbsp;&nbsp;New circle

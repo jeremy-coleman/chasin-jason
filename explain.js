@@ -1,6 +1,6 @@
 var color = require('kleur')
 
-console.log("change bundle strategy here using alternate bpack")
+console.log("change bundle format here using alternate bpack")
 console.log(color.green("tools/browserify/browserify.ts(10,0)"))
 
 console.log("billion percent smaller watchify")

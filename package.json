@@ -10,7 +10,7 @@
     "explain":"node explain.js"
   },
   "dependencies": {
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "when-switch": "0.3.1",
     "htm": "3.0.4",
     "mobx":"5.15.4",
